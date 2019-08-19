@@ -13,7 +13,6 @@ cwd=$(dirname $(realpath $0))
 build_qwingraph
 test -x qwingraph
 passed=$?
-echo $passed
 
 cd $cwd
 rm -rf tmp/
