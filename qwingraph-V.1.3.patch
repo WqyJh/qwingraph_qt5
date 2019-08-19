@@ -1,0 +1,142 @@
+diff -rc qwingraph_src/build.linux qwingraph/build.linux
+*** qwingraph_src/build.linux	2011-03-15 19:29:40.000000000 +0800
+--- qwingraph/build.linux	2019-08-19 11:54:55.831787176 +0800
+***************
+*** 1,6 ****
+  #!/bin/sh
+  
+  qmake -o Makefile.g++ wingraph.pro -platform linux-g++
+  rcc -name wingraph wingraph.qrc -o qrc_wingraph.cpp
+! gmake -f Makefile.g++ clean
+! gmake -f Makefile.g++
+--- 1,7 ----
+  #!/bin/sh
+  
+  qmake -o Makefile.g++ wingraph.pro -platform linux-g++
++ ln -s Makefile.g++ Makefile
+  rcc -name wingraph wingraph.qrc -o qrc_wingraph.cpp
+! make -f Makefile clean
+! make -f Makefile
+只在 qwingraph 存在：description-pak
+diff -rc qwingraph_src/mainwindow.cpp qwingraph/mainwindow.cpp
+*** qwingraph_src/mainwindow.cpp	2011-04-08 12:04:54.000000000 +0800
+--- qwingraph/mainwindow.cpp	2019-08-19 11:26:01.098961368 +0800
+***************
+*** 16,23 ****
+  
+  //---------------------------------------------------------------------------
+  
+! #include <QtGui/QtGui>
+! #include <QtCore/QPoint>
+  
+  #include "mainwindow.h"
+  #include "grprintpagesdlg.h"
+--- 16,25 ----
+  
+  //---------------------------------------------------------------------------
+  
+! #include <QtGui>
+! #include <QPoint>
+! #include <QPrinter>
+! #include <QPrintDialog>
+  
+  #include "mainwindow.h"
+  #include "grprintpagesdlg.h"
+***************
+*** 726,732 ****
+  }
+  
+  bool MainWindow::saveFile(const QString &fileName) {
+!   FILE *fp = fopen(fileName.toAscii().data(), "w");
+    if (fp == NULL) {
+      QMessageBox::warning(this, tr("Application"),
+                           tr("Cannot open file %1.\n")
+--- 728,734 ----
+  }
+  
+  bool MainWindow::saveFile(const QString &fileName) {
+!   FILE *fp = fopen(fileName.toLatin1().data(), "w");
+    if (fp == NULL) {
+      QMessageBox::warning(this, tr("Application"),
+                           tr("Cannot open file %1.\n")
+***************
+*** 1174,1180 ****
+    int argc = args.size();
+    char **argv = new char*[argc+1];
+    for (int i = 0; i < argc; i++ ) {
+!     argv[i] = strdup(args.at(i).toAscii().data());
+    }
+    argv[argc] = NULL;
+    vcg_main(argc, argv);
+--- 1176,1182 ----
+    int argc = args.size();
+    char **argv = new char*[argc+1];
+    for (int i = 0; i < argc; i++ ) {
+!     argv[i] = strdup(args.at(i).toLatin1().data());
+    }
+    argv[argc] = NULL;
+    vcg_main(argc, argv);
+diff -rc qwingraph_src/mainwindow.h qwingraph/mainwindow.h
+*** qwingraph_src/mainwindow.h	2010-12-27 17:40:26.000000000 +0800
+--- qwingraph/mainwindow.h	2019-08-19 11:18:35.426674932 +0800
+***************
+*** 3,19 ****
+  #ifndef __MAINWINDOW_H
+  #define __MAINWINDOW_H
+  
+! #include <QtGui/QMainWindow>
+! #include <QtGui/QAction>
+! #include <QtGui/QMenu>
+! #include <QtGui/QPlainTextEdit>
+! #include <QtGui/QLabel>
+! #include <QtGui/QStatusBar>
+! #include <QtGui/QMouseEvent>
+! #include <QtGui/QScrollArea>
+! #include <QtGui/QColor>
+! #include <QtGui/QCursor>
+! #include <QtGui/QPainter>
+  
+  class MouseCanvas;
+  struct PaintStruct;
+--- 3,19 ----
+  #ifndef __MAINWINDOW_H
+  #define __MAINWINDOW_H
+  
+! #include <QtWidgets>
+! #include <QAction>
+! #include <QMenu>
+! #include <QPlainTextEdit>
+! #include <QLabel>
+! #include <QStatusBar>
+! #include <QMouseEvent>
+! #include <QScrollArea>
+! #include <QColor>
+! #include <QCursor>
+! #include <QPainter>
+  
+  class MouseCanvas;
+  struct PaintStruct;
+只在 qwingraph_src/ 存在：qrc_wingraph.cpp
+diff -rc qwingraph_src/wingraph.pro qwingraph/wingraph.pro
+*** qwingraph_src/wingraph.pro	2011-04-11 10:08:36.000000000 +0800
+--- qwingraph/wingraph.pro	2019-08-19 11:52:41.415739673 +0800
+***************
+*** 8,19 ****
+--- 8,24 ----
+  
+  DESTDIR=.
+  TARGET = qwingraph
++ installfiles.files += qwingraph
++ installfiles.path = /usr/local/bin/
++ INSTALLS += installfiles
+  
+  # resources
+  
+  RESOURCES += wingraph.qrc
+  
+  # compilation flags
++ QT += core gui printsupport
++ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+  
+  # since we can not modify some source files, just suppress warnings
+  win32: {
