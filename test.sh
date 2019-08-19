@@ -14,6 +14,9 @@ build_qwingraph
 test -x qwingraph
 passed=$?
 
+mkdir -p ${ARTIFACTS}
+mv -f qwingraph ${ARTIFACTS}/qwingraph-${NAME}
+
 cd $cwd
 rm -rf tmp/
 

@@ -1,18 +1,32 @@
 language: minimal
-
 services:
 - docker
-
+env:
+  global:
+  - ARTIFACTS=/tmp/artifacts
+cache:
+  directories:
+  - "${ARTIFACTS}"
 matrix:
   include:
-  - env: IMAGE=debian:9
-  - env: IMAGE=ubuntu:18.04
-  - env: IMAGE=ubuntu:16.04
-  - env: IMAGE=ubuntu:14.04
-  - env: IMAGE=kalilinux/kali-linux-docker
-
+  - env: IMAGE=debian:9 NAME=debian9
+  - env: IMAGE=ubuntu:18.04 NAME=ubuntu18.04
+  - env: IMAGE=ubuntu:16.04 NAME=ubuntu16.04
+  - env: IMAGE=ubuntu:14.04 NAME=ubuntu14.04
+  - env: IMAGE=kalilinux/kali-linux-docker NAME=kali
+  - stage: upload
+    install: skip
+    script: skip
+    deploy:
+      provider: releases
+      api_key:
+        secure: 04RovFx1J97xpZatejbWAw25klbSfhjpmhf1kjSusV/E9sHalemX14dy6QWXKV2Z3uSKz0fLtinu/NflCpHEwuPWyWi9cQJdoTCrdZWxhBTb4b5PvITy+AcWIV1Z4DmpTxpv5KNDyV+boWNRbtlVU9Z6sOx9D3suoHCw/iueeouoB/rjUY1xavccsISzGfUoLXNOiH9jw1Q0L7v+4wjQr8H8riMPEe9feNY6G2Ous5oV2nIegSD7Mp1PZMkF7FtCNIxogyL5+zTakX/f1u0u3dUrrE76/vutvV1KBa0kGYprCGexMlP1VC8285mYe30YXxECgrAmd+3VaiWQYEeeaFejRFQLvnx3evo0tleDRmQxNgnN2hafzzsKDbFKXXdKRvs+1Xp0b3V1i89TfZ1t2HzYJf7r++PDsbm/bqINRuK8W81LtXkSwe0unCGcQxo4pZ1QXrItP1P27xdR1q4STX87tNRUi8Mh74iGC5KLQk18DQnC9HIORgsdjD+L7crIb6snFOj8rzlBGD7SIUzrO6AQcnk+qcoFJIapqzYh4ys077fNW0GCO5NhtbsChrLXapnWtkq6Rk+l+PFkHC+3PiB7P+PhjIl0yhBotQRfBojYrqk/Yw4B8EHb1wg01EYqa8C6lUpj8puv3VcHBoi7E66GoQJPlUp9Bb/24jJaR8E=
+      file: "${ARTIFACTS}/*"
+      skip_cleanup: true
+      on:
+        branch: master
+        repo: WqyJh/qwingraph_qt5
 install:
 - "./.travis/install.sh"
-
 script:
 - "./.travis/test.sh"
