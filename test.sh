@@ -8,7 +8,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-cwd=$(pwd)
+cwd=$(dirname $(realpath $0))
 
 build_qwingraph
 test -x qwingraph

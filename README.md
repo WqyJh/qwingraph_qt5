@@ -1,5 +1,9 @@
 # qwingraph_patch
 
+[![Build Status](https://travis-ci.org/WqyJh/qwingraph_qt5.svg?branch=master)](https://travis-ci.org/WqyJh/qwingraph_qt5)
+[![license](https://img.shields.io/badge/LICENCE-GPLv2-brightgreen.svg)](https://raw.githubusercontent.com/WqyJh/qwingraph_qt5/master/LICENSE)
+
+
 An patch porting qwingraph (wingraph written in qt4) to qt5.
 
 [Qwingraph v1.10](qwingraph_src.zip) is an utilities for IDA to visualize graph.
