@@ -1,6 +1,7 @@
 #!/bin/bash
 
-apt-get install python3 python3-pip && \
+apt-get update && \
+apt-get install -y python3 python3-pip && \
 pip3 install githubot && \
 githubot --token ${GH_TOKEN} \
 --repo ${TRAVIS_REPO_SLUG} \
