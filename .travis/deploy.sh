@@ -1,6 +1,5 @@
 #!/bin/bash
 
-pip3 install githubot && \
 githubot --token ${GH_TOKEN} \
 --repo ${TRAVIS_REPO_SLUG} \
 --tag ${TRAVIS_TAG} \
