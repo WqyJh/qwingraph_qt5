@@ -10,7 +10,7 @@ cache:
 matrix:
   include:
   - env: IMAGE=debian:9 NAME=debian9
-  # - env: IMAGE=ubuntu:18.04 NAME=ubuntu18.04
+  - env: IMAGE=ubuntu:18.04 NAME=ubuntu18.04
   # - env: IMAGE=ubuntu:16.04 NAME=ubuntu16.04
   # - env: IMAGE=ubuntu:14.04 NAME=ubuntu14.04
   # - env: IMAGE=kalilinux/kali-linux-docker NAME=kali
