@@ -23,9 +23,9 @@ matrix:
       provider: script
       script: bash ./.travis/deploy.sh
       skip_cleanup: true
-      # on:
-      #   branch: master
-      #   repo: WqyJh/qwingraph_qt5
+      on:
+        branch: fix-deploy
+        repo: WqyJh/qwingraph_qt5
 install:
 - "./.travis/install.sh"
 script:
