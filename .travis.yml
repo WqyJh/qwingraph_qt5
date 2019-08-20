@@ -15,9 +15,6 @@ matrix:
   # - env: IMAGE=ubuntu:14.04 NAME=ubuntu14.04
   # - env: IMAGE=kalilinux/kali-linux-docker NAME=kali
   - stage: upload
-    install: 
-    - apt-get install -y python3-pip
-    - pip3 install githubot
     script: skip
     env:
     - secure: GYgX1oV5QortfGxdBnEIlrnIgu1emDdX39CafUX7B2f7Fr+LRROBbnowi5W+AWTqcH/CVDRd6qOSG4nx9GhJztPfvKz3F213JgxxjeqRoECGYeSEddPSmPYXtjUQMCGvceEuJyndrhHUby8RiM0NDuQf7B2aIepcYmFi2wfxE1BsNloDvZyhLBD3krkH3XiBZc4avU2BqTucm04ggDOFOeVi5I2oV4Aj7r1gpgjw/HBQm52gdyfBakV6hhVqOcc1Gi0dNqh1TvyZPjTESaCIwbaE8ngKxsQMvbqoe78PdEq4Fq6sgc7iZwa5xGhclx05ea1R9+2RYjZ7JtMmGcmywXqVD/mGB+sKvP8g07ZgkF6afw7T+9Yd6FsiT6WrUlVA4lzVbbGnaB2mFRfhgGOcWSwm8c7iMcr/OLfnmkZLyBCKIrdobPcp/8aNF2/KIVvEni5LlAU7ThdZi6krTtmYua7nEBW7lPaf8kByDS2i1bL47Utk8QZ1TgdH/+dHmO6t7/lzkhms8essVSay079VubqkZ6NmKy66/rjde5Uq+dsK/Vsoste77OUli1kdorT+tCPNL+gsfmt+/w5dbFc2HKZ2HuPhMFPdnVw79KIvvcnb1u+2h9AUsXN/pAbMJhAVwAtqoo2HXcMHCfwh+N5p58uH24/UzSmtXAMdsiBJHV4=
