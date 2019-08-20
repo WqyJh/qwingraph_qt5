@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 sudo apt-get update && \
 sudo apt-get install -y python3 python3-setuptools python3-pip && \
 sudo pip3 install githubot && \

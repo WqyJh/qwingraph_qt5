@@ -16,6 +16,7 @@ passed=$?
 
 mkdir -p ${ARTIFACTS}
 mv -f qwingraph ${ARTIFACTS}/qwingraph-${NAME}
+ls ${ARTIFACTS}
 
 cd $cwd
 rm -rf tmp/
