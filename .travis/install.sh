@@ -2,5 +2,11 @@
 
 set -x
 
-pip install githubot==0.6.1 && \
-[[ x${IMAGE} != x ]] && docker pull ${IMAGE}
+function docker_pull()
+{
+    if [[ x${IMAGE} != x ]]; then
+        docker pull ${IMAGE}
+    fi
+}
+
+pip install githubot==0.6.1 && docker_pull
