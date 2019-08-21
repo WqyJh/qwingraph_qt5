@@ -3,4 +3,4 @@
 set -x
 
 pip install githubot==0.6.1 && \
-[[ ! -z ${IMAGE} ]] && docker pull ${IMAGE}
+[[ x${IMAGE} != x ]] && docker pull ${IMAGE}
