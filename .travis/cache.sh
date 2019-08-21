@@ -2,7 +2,7 @@
 
 set -x
 
-TRAVIS_TAG=testtag
+[[ x$TRAVIS_TAG == x ]] && TRAVIS_TAG=untagged-$(date +%d%m%Y-%H%M%S)
 DIR=${TRAVIS_REPO_SLUG}/${TRAVIS_TAG}
 TARGET=${DIR}/qwingraph-${NAME}
 

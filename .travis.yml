@@ -21,7 +21,7 @@ matrix:
         script: bash ./.travis/deploy.sh
         skip_cleanup: true
         on:
-          branch: fix-deploy
+          tags: true
           repo: WqyJh/qwingraph_qt5
 install:
   - ./.travis/install.sh

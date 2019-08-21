@@ -2,7 +2,6 @@
 
 set -x
 
-TRAVIS_TAG=testtag
 DIR=${TRAVIS_REPO_SLUG}/${TRAVIS_TAG}
 
 githubot file download --token ${CACHE_TOKEN} --repo ${CACHE_REPO} ${DIR} && \
