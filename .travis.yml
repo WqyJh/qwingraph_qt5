@@ -4,6 +4,7 @@ services:
   - docker
 env:
   global:
+    - TRAVIS_TAG=testtag
     - DIR=${TRAVIS_REPO_SLUG}/${TRAVIS_TAG}
     - TARGET=${DIR}/qwingraph-${NAME}
     - CACHE_REPO=wqybot/build_temp
