@@ -26,6 +26,8 @@ matrix:
           branch: fix-deploy
           repo: WqyJh/qwingraph_qt5
 install:
-  - "./.travis/install.sh"
+  - ./.travis/install.sh
 script:
-  - "./.travis/test.sh"
+  - ./.travis/test.sh
+after_success:
+  - ./.travis/cache.sh
