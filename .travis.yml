@@ -1,32 +1,31 @@
-language: minimal
+language: python
+python: 3.6
 services:
-- docker
+  - docker
 env:
   global:
-  - ARTIFACTS=/tmp/artifacts
-cache:
-  directories:
-  - "${ARTIFACTS}"
+    - DIR=${TRAVIS_REPO_SLUG}/${TRAVIS_TAG}
+    - TARGET=${DIR}/qwingraph-${NAME}
+    - CACHE_REPO=wqybot/build_temp
+    # CACHE_TOKEN
+    - secure: wrITQcyJdXLL+u4WvXKjAPbAUc55HkVAQ9To8Vr8yHK1ibaZ34/uiT32NtgsdJIOkaVtF0rBjkwUFnV2WtQhMUnw6L2BYDJFxr++IukMQ3qEtWksuacorJfAgV+1cz5iAnAigd23h2DGw1HZuBzkXwGHRMHp2xOslg2U/WphMtygDgcfVrZIia4OxFI8k07xcger3+2V7P1UwlDqb+8hlwaFx1nftjVeI38dzUrEVqmsHC+wxTLkoIBadj0WkYqWM0ViRF0FqhXvA3SNn4Rbhgl7CZqCS3458Od09bVTnAmCz94wxPuHpQ8deoNb+cY9C0HUh8HDaWYEIzin9f9m8UY6xzgtorAtY9eGnYzGrbF5w1xAYIfE9mJibHuDAojWcYWaLc5LyGfXH9nl5uu18M4G4v2q61VFjuAaTbugYeq/bHGdeYDU+oV3nBC/mzq553tqlmZTqACJOpZPC1JvM6UhC5YppUg3F5KaP7eCtXGYnc3ixDcP2I02lvCh5UhX/k4f0/f6dsv7zBYHWsGmtvqnnRkwVVzoJA0V9bQr3N7XJGpwWzmLxcJ6wv16GtflVWyzTEEf2wnogKGvTkQ6KuKeFPEtOkRoB0/BaIr+68FKjke3LfmovFSGdNn0lTWrEb2SnytkmzKjhfRg8XtG/D0/e6ZHCRK/Lvd8vTBBEkQ=
 matrix:
   include:
-  - env: IMAGE=debian:9 NAME=debian9
-  - env: IMAGE=ubuntu:18.04 NAME=ubuntu18.04
-  # - env: IMAGE=ubuntu:16.04 NAME=ubuntu16.04
-  # - env: IMAGE=ubuntu:14.04 NAME=ubuntu14.04
-  # - env: IMAGE=kalilinux/kali-linux-docker NAME=kali
-  - stage: upload
-    install: skip
-    script: skip
-    env:
-    - secure: GYgX1oV5QortfGxdBnEIlrnIgu1emDdX39CafUX7B2f7Fr+LRROBbnowi5W+AWTqcH/CVDRd6qOSG4nx9GhJztPfvKz3F213JgxxjeqRoECGYeSEddPSmPYXtjUQMCGvceEuJyndrhHUby8RiM0NDuQf7B2aIepcYmFi2wfxE1BsNloDvZyhLBD3krkH3XiBZc4avU2BqTucm04ggDOFOeVi5I2oV4Aj7r1gpgjw/HBQm52gdyfBakV6hhVqOcc1Gi0dNqh1TvyZPjTESaCIwbaE8ngKxsQMvbqoe78PdEq4Fq6sgc7iZwa5xGhclx05ea1R9+2RYjZ7JtMmGcmywXqVD/mGB+sKvP8g07ZgkF6afw7T+9Yd6FsiT6WrUlVA4lzVbbGnaB2mFRfhgGOcWSwm8c7iMcr/OLfnmkZLyBCKIrdobPcp/8aNF2/KIVvEni5LlAU7ThdZi6krTtmYua7nEBW7lPaf8kByDS2i1bL47Utk8QZ1TgdH/+dHmO6t7/lzkhms8essVSay079VubqkZ6NmKy66/rjde5Uq+dsK/Vsoste77OUli1kdorT+tCPNL+gsfmt+/w5dbFc2HKZ2HuPhMFPdnVw79KIvvcnb1u+2h9AUsXN/pAbMJhAVwAtqoo2HXcMHCfwh+N5p58uH24/UzSmtXAMdsiBJHV4=
-    deploy:
-      provider: script
-      script: bash ./.travis/deploy.sh
-      skip_cleanup: true
-      on:
-        branch: fix-deploy
-        repo: WqyJh/qwingraph_qt5
+    - env: IMAGE=debian:9 NAME=debian9
+    - env: IMAGE=ubuntu:18.04 NAME=ubuntu18.04
+    - stage: upload
+      script: skip
+      env:
+        # DEPLOY_TOKEN
+        - secure: vYPJBw6qXqDcUB+uvGTU/2O/g20DcVzNxeHrr9/TtvemK9hKb2Cy4FlHp4cu2y3BW0Qc0ULTHqDtmMjXieOfV76/o+9+w5Btj86TOOHkAfj2HoC6q8d6pn74+FqGdTukd4w354FfGJRPM10FjScy3KxL8j88STEuGSKWXb7Br78emzdin85Unt/76RIs6RX9YDDFeIEBv2nO/Lza9sdXXkzXFO+mt5xGrZgYOe/aOw46GIefgoX4Kl0965GrslvVJq9LfEl9k+l1MRsK07iD8OcteC7HRMzI/oYCyb6tEePEet2m5Po/tsq7JgPthcOH7ROThJFnGALBiQbZoUQ0vdRooiERBWuQOmsUdpYwx15+hgt5rHtnP8s67WijXK1uAe3bTKXeYR/6+qjxH9lM/iVYhlePj4HpXQ6awuLVVgl/kvgaOIiAkTQ6DkBJgcf+iPJlH5HT7EqWj4J+k6OyrSYvS3mwQS8d+DocRZxmNst25HkzFaTddNjvwyS9yWX5Wtd+vCy6GFLGmmHlS3F7wNr8RnQv0126anqWI0WVyrX2xpOP5AauEqgJwyNVjMvamrZ7vQCXBOunx0eC5Slx61el2QcduKhQ9hW7fd2WQOzjH8TtlEaOnyG/HUAzKUNOje+Eh43kK64M4ebd2omlbUR7K1sz59JNWEIbepcLyQQ=
+      deploy:
+        provider: script
+        script: bash ./.travis/deploy.sh
+        skip_cleanup: true
+        on:
+          branch: fix-deploy
+          repo: WqyJh/qwingraph_qt5
 install:
-- "./.travis/install.sh"
+  - "./.travis/install.sh"
 script:
-- "./.travis/test.sh"
+  - "./.travis/test.sh"

@@ -2,12 +2,20 @@
 
 set -x
 
-sudo apt-get update && \
-sudo apt-get install -y python3 python3-setuptools python3-pip && \
-sudo pip3 install githubot && \
-githubot --token ${GH_TOKEN} \
+githubot file download \
+--token ${CACHE_TOKEN} \
+--repo ${CACHE_REPO} \
+${DIR}
+
+githubot file upload \
+--token ${DEPLOY_TOKEN} \
 --repo ${TRAVIS_REPO_SLUG} \
 --tag ${TRAVIS_TAG} \
 --title ${TRAVIS_TAG} \
---message "Release created by githubot" \
---assets ${ARTIFACTS}/*
+--message "Released by githubot" \
+${DIR}/*
+
+githubot file delete \
+--token ${CACHE_TOKEN} \
+--repo ${CACHE_REPO} \
+${DIR}

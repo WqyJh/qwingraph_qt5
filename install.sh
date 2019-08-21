@@ -10,4 +10,13 @@ build_qwingraph
 make install
 
 cd $cwd
-rm -rf tmp/
+
+case "$1" in
+    --keep)
+    echo "keep tmp/"
+    ;;
+    *)
+    echo "clean tmp/"
+    rm -rf tmp/
+    ;;
+esac
