@@ -14,11 +14,17 @@ build_qwingraph
 test -x qwingraph
 passed=$?
 
-mkdir -p ${ARTIFACTS}
-mv -f qwingraph ${ARTIFACTS}/qwingraph-${NAME}
-
 cd $cwd
-rm -rf tmp/
+
+case "$1" in
+    --keep)
+    echo "keep tmp/"
+    ;;
+    *)
+    echo "clean tmp/"
+    rm -rf tmp/
+    ;;
+esac
 
 if [ ${passed} -eq 0 ]; then
     printf "${GREEN}test passed${NC}\n"
