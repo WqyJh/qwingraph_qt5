@@ -4,9 +4,6 @@ services:
   - docker
 env:
   global:
-    - TRAVIS_TAG=testtag
-    - DIR=${TRAVIS_REPO_SLUG}/${TRAVIS_TAG}
-    - TARGET=${DIR}/qwingraph-${NAME}
     - CACHE_REPO=wqybot/build_temp
     # CACHE_TOKEN
     - secure: wrITQcyJdXLL+u4WvXKjAPbAUc55HkVAQ9To8Vr8yHK1ibaZ34/uiT32NtgsdJIOkaVtF0rBjkwUFnV2WtQhMUnw6L2BYDJFxr++IukMQ3qEtWksuacorJfAgV+1cz5iAnAigd23h2DGw1HZuBzkXwGHRMHp2xOslg2U/WphMtygDgcfVrZIia4OxFI8k07xcger3+2V7P1UwlDqb+8hlwaFx1nftjVeI38dzUrEVqmsHC+wxTLkoIBadj0WkYqWM0ViRF0FqhXvA3SNn4Rbhgl7CZqCS3458Od09bVTnAmCz94wxPuHpQ8deoNb+cY9C0HUh8HDaWYEIzin9f9m8UY6xzgtorAtY9eGnYzGrbF5w1xAYIfE9mJibHuDAojWcYWaLc5LyGfXH9nl5uu18M4G4v2q61VFjuAaTbugYeq/bHGdeYDU+oV3nBC/mzq553tqlmZTqACJOpZPC1JvM6UhC5YppUg3F5KaP7eCtXGYnc3ixDcP2I02lvCh5UhX/k4f0/f6dsv7zBYHWsGmtvqnnRkwVVzoJA0V9bQr3N7XJGpwWzmLxcJ6wv16GtflVWyzTEEf2wnogKGvTkQ6KuKeFPEtOkRoB0/BaIr+68FKjke3LfmovFSGdNn0lTWrEb2SnytkmzKjhfRg8XtG/D0/e6ZHCRK/Lvd8vTBBEkQ=
